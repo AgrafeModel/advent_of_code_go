@@ -14,6 +14,29 @@ func SliceMultiply(slice []int) int {
 	return res
 }
 
+func InsertBefore[T any](slice []T, at int, value T) []T {
+
+	if at < 0 {
+		//add a the start
+		return append([]T{value}, slice...)
+	}
+	// insert before the pos
+	slc := make([]T, len(slice)+1)
+	copy(slc, slice[:at])
+	slc[at] = value
+	copy(slc[at+1:], slice[at:])
+	return slc
+}
+
+func InsertAfter[T any](slice []T, at int, value T) []T {
+	// insert after the pos
+	slc := make([]T, len(slice)+1)
+	copy(slc, slice[:at+1])
+	slc[at+1] = value
+	copy(slc[at+2:], slice[at+1:])
+	return slc
+}
+
 func SliceSum(slice []int) int {
 	res := 0
 	for _, v := range slice {

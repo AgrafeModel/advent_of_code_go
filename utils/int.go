@@ -89,6 +89,14 @@ func ParseInt[T Letters](value T) int {
 	return int(val)
 }
 
+func ParseSliceInt[T Letters](value []T) []int {
+	var res []int
+	for _, v := range value {
+		res = append(res, ParseInt(v))
+	}
+	return res
+}
+
 func IsInt(c byte) bool {
 	if c >= '0' && c <= '9' {
 		return true
