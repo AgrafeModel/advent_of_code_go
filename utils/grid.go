@@ -52,6 +52,50 @@ func (p Position) Negate() Position {
 	}
 }
 
+func (p Position) RotateRight90() Position {
+	switch p {
+	case UP:
+		return LEFT
+	case DOWN:
+		return RIGHT
+	case LEFT:
+		return DOWN
+	case RIGHT:
+		return UP
+	case UP_LEFT:
+		return UP_RIGHT
+	case UP_RIGHT:
+		return DOWN_LEFT
+	case DOWN_LEFT:
+		return DOWN_RIGHT
+	case DOWN_RIGHT:
+		return UP_LEFT
+	}
+	return p
+}
+
+func (p Position) RotateLeft90() Position {
+	switch p {
+	case UP:
+		return RIGHT
+	case DOWN:
+		return LEFT
+	case LEFT:
+		return UP
+	case RIGHT:
+		return DOWN
+	case UP_LEFT:
+		return DOWN_LEFT
+	case UP_RIGHT:
+		return DOWN_RIGHT
+	case DOWN_LEFT:
+		return UP_RIGHT
+	case DOWN_RIGHT:
+		return UP_LEFT
+	}
+	return p
+}
+
 func (p Position) Mul(value int) Position {
 	return Position{
 		X: p.X * value,
@@ -70,5 +114,12 @@ func (p Position) AddPos(pos Position) Position {
 	return Position{
 		X: p.X + pos.X,
 		Y: p.Y + pos.Y,
+	}
+}
+
+func (p Position) RemovePos(pos Position) Position {
+	return Position{
+		X: p.X - pos.X,
+		Y: p.Y - pos.Y,
 	}
 }

@@ -75,11 +75,22 @@ func DirectionSign(v1, v2 int) int {
 }
 
 func ConcatInt(v ...int) int {
-	res := 0
-	for _, v := range v {
-		res = res*10 + v
+	//transform []int to []string
+	var str []string
+	for _, i := range v {
+		str = append(str, strconv.Itoa(i))
 	}
-	return res
+
+	//concatenate all strings
+	var res string
+	for _, s := range str {
+		res += s
+	}
+
+	//parse int
+	val, err := strconv.ParseInt(res, 10, 64)
+	HandleErr(err)
+	return int(val)
 }
 
 func ParseInt[T Letters](value T) int {

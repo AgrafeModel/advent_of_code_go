@@ -89,7 +89,7 @@ func Day3Part2() int {
 				}
 
 				if len(num) > 1 {
-					res += utils.SliceMultiply(num)
+					res += utils.SliceMultiplyTogether(num)
 				}
 
 			}

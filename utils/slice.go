@@ -6,7 +6,21 @@ func RemoveLast(str string) string {
 	return str[:len(str)-1]
 }
 
-func SliceMultiply(slice []int) int {
+func SliceAddOperator(slice []int, value int) []int {
+	for i := range slice {
+		slice[i] += value
+	}
+	return slice
+}
+
+func SliceMultiplyOperator(slice []int, value int) []int {
+	for i := range slice {
+		slice[i] *= value
+	}
+	return slice
+}
+
+func SliceMultiplyTogether(slice []int) int {
 	res := 1
 	for _, v := range slice {
 		res *= v
@@ -35,22 +49,6 @@ func InsertAfter[T any](slice []T, at int, value T) []T {
 	slc[at+1] = value
 	copy(slc[at+2:], slice[at+1:])
 	return slc
-}
-
-func SliceSum(slice []int) int {
-	res := 0
-	for _, v := range slice {
-		res += v
-	}
-	return res
-}
-
-func SliceSumFloat(slice []float64) float64 {
-	res := 0.0
-	for _, v := range slice {
-		res += v
-	}
-	return res
 }
 
 func RemoveFirstSlice[T any](slice []T) []T {
