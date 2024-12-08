@@ -110,6 +110,27 @@ func (p Position) Add(value int) Position {
 	}
 }
 
+func (p Position) Sub(value int) Position {
+	return Position{
+		X: p.X - value,
+		Y: p.Y - value,
+	}
+}
+
+func (p Position) SubPos(pos Position) Position {
+	return Position{
+		X: p.X - pos.X,
+		Y: p.Y - pos.Y,
+	}
+}
+
+func (p Position) Abs() Position {
+	return Position{
+		X: p.X * -1,
+		Y: p.Y * -1,
+	}
+}
+
 func (p Position) AddPos(pos Position) Position {
 	return Position{
 		X: p.X + pos.X,
@@ -122,4 +143,8 @@ func (p Position) RemovePos(pos Position) Position {
 		X: p.X - pos.X,
 		Y: p.Y - pos.Y,
 	}
+}
+
+func (p Position) Dist(p2 Position) Position {
+	return p.SubPos(p2).Abs()
 }
