@@ -25,6 +25,10 @@ var y2024Funcs = []func() int{
 	y2024.Day7Part2,
 	y2024.Day8Part1,
 	y2024.Day8Part2,
+	y2024.Day9Part1,
+	y2024.Day9Part2,
+	y2024.Day10Part1,
+	y2024.Day10Part2,
 }
 
 var y2023Funcs = []func() int{
@@ -89,7 +93,7 @@ func runDay(year int, day int) {
 }
 
 func runDayPart(year int, day int, part int) {
-	d := (day - 2) * 2
+	d := (day-2)*2 + 1
 	switch year {
 	case 2023:
 		formatRunning(y2023Funcs[d+part], year, day, part)

@@ -83,6 +83,10 @@ func MaxIntIndex(slice []int) int {
 	return maxid
 }
 
+func ReplaceAt(str string, at int, char string) string {
+	return str[:at] + char + str[at+1:]
+}
+
 func StrSliceToIntSlice(slice []string) []int {
 	res := make([]int, len(slice))
 	for i, v := range slice {

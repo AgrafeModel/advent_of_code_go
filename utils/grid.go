@@ -8,6 +8,10 @@ var Directions = []Position{
 	UP, DOWN, LEFT, RIGHT, UP_LEFT, DOWN_LEFT, UP_RIGHT, DOWN_RIGHT,
 }
 
+var LinesDirections = []Position{
+	UP, DOWN, LEFT, RIGHT,
+}
+
 var DiagonalsDirections = []Position{
 	UP_LEFT, DOWN_LEFT, UP_RIGHT, DOWN_RIGHT,
 }
