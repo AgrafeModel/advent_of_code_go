@@ -6,7 +6,17 @@ import (
 
 	"github.com/AgrafeModel/advent_of_code/puzzles/y2023"
 	"github.com/AgrafeModel/advent_of_code/puzzles/y2024"
+	"github.com/AgrafeModel/advent_of_code/puzzles/y2025"
 )
+
+var y2025Funcs = []func() int{
+	y2025.Day1Part1,
+	y2025.Day1Part2,
+	// y2025.Day2Part1,
+	// y2025.Day2Part2,
+	// y2025.Day3Part1,
+	// y2025.Day3Part2,
+}
 
 var y2024Funcs = []func() int{
 	y2024.Day1Part1,
@@ -52,6 +62,7 @@ func main() {
 	if *chosen_year == 0 {
 		allYear2023()
 		allYear2024()
+		allYear2025()
 
 	} else if *chosen_part != 0 && *chosen_day != 0 && *chosen_year != 0 {
 		runDayPart(*chosen_year, *chosen_day, *chosen_part)
@@ -77,6 +88,10 @@ func runYear(year int) {
 		allYear2023()
 	case 2024:
 		allYear2024()
+	case 2025:
+		allYear2025()
+	default:
+		fmt.Errorf("Year %d is not available", year)
 	}
 }
 
@@ -89,6 +104,11 @@ func runDay(year int, day int) {
 	case 2024:
 		formatRunning(y2024Funcs[d], year, day, 1)
 		formatRunning(y2024Funcs[d+1], year, day, 2)
+	case 2025:
+		formatRunning(y2025Funcs[d], year, day, 1)
+		formatRunning(y2025Funcs[d+1], year, day, 2)
+	default:
+		fmt.Errorf("Year %d is not available", year)
 	}
 }
 
@@ -100,6 +120,18 @@ func runDayPart(year int, day int, part int) {
 	case 2024:
 		formatRunning(y2024Funcs[d+part], year, day, part)
 	}
+}
+
+func allYear2025() {
+
+	fmt.Println("======[ YEAR 2025 ]======")
+	for i, fn := range y2025Funcs {
+		fmt.Println("---{ Day ", i/2+1, " - part ", i%2+1, " }---")
+		res := fn()
+		fmt.Println("Anwser: ", res)
+	}
+
+	fmt.Println("\n\n")
 }
 
 func allYear2024() {
