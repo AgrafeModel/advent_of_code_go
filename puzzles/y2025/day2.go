@@ -7,17 +7,17 @@ import (
 	"github.com/AgrafeModel/advent_of_code/utils"
 )
 
-type ranges struct {
+type Ranges struct {
 	start int
 	end   int
 }
 
-func readDay2nput() []ranges {
-	var ra []ranges
+func readDay2nput() []Ranges {
+	var ra []Ranges
 	utils.ReadFilePerLines(utils.GetInputPath(2025, 2), func(line string) {
 		ss := strings.Split(line, ",")
 		for _, part := range ss {
-			var r ranges
+			var r Ranges
 			var start, end int
 			fmt.Sscanf(part, "%d-%d", &start, &end)
 			r.start = start
