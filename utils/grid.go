@@ -1,5 +1,7 @@
 package utils
 
+import "math"
+
 type Position struct {
 	X, Y int
 }
@@ -151,4 +153,21 @@ func (p Position) RemovePos(pos Position) Position {
 
 func (p Position) Dist(p2 Position) Position {
 	return p.SubPos(p2).Abs()
+}
+
+type Position3D struct {
+	X, Y, Z int
+}
+
+func abs(a int) int {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+
+func Distance3D(p1, p2 Position3D) float64 {
+	return math.Sqrt(float64(abs(p1.X-p2.X)*abs(p1.X-p2.X) +
+		abs(p1.Y-p2.Y)*abs(p1.Y-p2.Y) +
+		abs(p1.Z-p2.Z)*abs(p1.Z-p2.Z)))
 }
