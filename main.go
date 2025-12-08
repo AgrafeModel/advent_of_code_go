@@ -20,6 +20,8 @@ var y2025Funcs = []func() int{
 	y2025.Day4Part2,
 	y2025.Day5Part1,
 	y2025.Day5Part2,
+	y2025.Day6Part1,
+	y2025.Day6Part2,
 }
 
 var y2024Funcs = []func() int{
@@ -123,6 +125,10 @@ func runDayPart(year int, day int, part int) {
 		formatRunning(y2023Funcs[d+part], year, day, part)
 	case 2024:
 		formatRunning(y2024Funcs[d+part], year, day, part)
+	case 2025:
+		formatRunning(y2025Funcs[d+part], year, day, part)
+	default:
+		fmt.Errorf("Year %d is not available", year)
 	}
 }
 
