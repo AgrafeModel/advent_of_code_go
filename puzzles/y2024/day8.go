@@ -9,9 +9,9 @@ import (
 func Day8Part1() int {
 	// res := 0
 
-	antennas := make(map[rune][]utils.Position)
+	antennas := make(map[rune][]utils.Position2D)
 
-	var antinodes []utils.Position
+	var antinodes []utils.Position2D
 
 	grid := []string{}
 
@@ -23,9 +23,9 @@ func Day8Part1() int {
 		for x, v := range line {
 			if v != '.' {
 				if _, ok := antennas[v]; !ok {
-					antennas[v] = []utils.Position{}
+					antennas[v] = []utils.Position2D{}
 				}
-				antennas[v] = append(antennas[v], utils.Position{X: x, Y: y})
+				antennas[v] = append(antennas[v], utils.Position2D{X: x, Y: y})
 			}
 		}
 		y++
@@ -67,8 +67,8 @@ func Day8Part2() int {
 
 	// res := 0
 
-	antennas := make(map[rune][]utils.Position)
-	var antinodes []utils.Position
+	antennas := make(map[rune][]utils.Position2D)
+	var antinodes []utils.Position2D
 
 	grid := []string{}
 
@@ -80,9 +80,9 @@ func Day8Part2() int {
 		for x, v := range line {
 			if v != '.' {
 				if _, ok := antennas[v]; !ok {
-					antennas[v] = []utils.Position{}
+					antennas[v] = []utils.Position2D{}
 				}
-				antennas[v] = append(antennas[v], utils.Position{X: x, Y: y})
+				antennas[v] = append(antennas[v], utils.Position2D{X: x, Y: y})
 			}
 		}
 		y++
@@ -140,12 +140,12 @@ func Day8Part2() int {
 	return len(antinodes)
 }
 
-func debugAntennaGrid(grid []string, antinodes []utils.Position) {
+func debugAntennaGrid(grid []string, antinodes []utils.Position2D) {
 	for y, line := range grid {
 		for x, v := range line {
 			if v != '.' {
 				fmt.Printf("%c", v)
-			} else if utils.Contains(antinodes, utils.Position{X: x, Y: y}) {
+			} else if utils.Contains(antinodes, utils.Position2D{X: x, Y: y}) {
 				fmt.Printf("%c", '#')
 			} else {
 				fmt.Printf("%c", v)

@@ -9,17 +9,17 @@ import (
 type guardGrid struct {
 	grid [][]rune
 
-	guard          utils.Position
-	guardDirection utils.Position
+	guard          utils.Position2D
+	guardDirection utils.Position2D
 
 	walkedpos []posDir
 
-	rightLookPos []utils.Position
+	rightLookPos []utils.Position2D
 }
 
 type posDir struct {
-	pos utils.Position
-	dir utils.Position
+	pos utils.Position2D
+	dir utils.Position2D
 }
 
 const (
@@ -39,7 +39,7 @@ func Day6Part1() int {
 
 		for x, c := range line {
 			if c == guard {
-				grid.guard = utils.Position{X: x, Y: y}
+				grid.guard = utils.Position2D{X: x, Y: y}
 				grid.guardDirection = utils.DOWN
 			}
 
@@ -136,7 +136,7 @@ func Day6Part2() int {
 
 		for x, c := range line {
 			if c == guard {
-				grid.guard = utils.Position{X: x, Y: y}
+				grid.guard = utils.Position2D{X: x, Y: y}
 				grid.guardDirection = utils.DOWN
 			}
 
@@ -200,7 +200,7 @@ func debugGrid(grid guardGrid) {
 				//in red
 				fmt.Printf("\033[31m %c \033[0m", c)
 
-			} else if ok, dir := ContainsWalkedPos(grid.walkedpos, utils.Position{X: x, Y: y}); ok {
+			} else if ok, dir := ContainsWalkedPos(grid.walkedpos, utils.Position2D{X: x, Y: y}); ok {
 				switch dir {
 				case utils.DOWN:
 					fmt.Printf("%c", '^')
@@ -220,11 +220,11 @@ func debugGrid(grid guardGrid) {
 	}
 }
 
-func ContainsWalkedPos(walkedPos []posDir, pos utils.Position) (bool, utils.Position) {
+func ContainsWalkedPos(walkedPos []posDir, pos utils.Position2D) (bool, utils.Position2D) {
 	for _, p := range walkedPos {
 		if p.pos == pos {
 			return true, p.dir
 		}
 	}
-	return false, utils.Position{}
+	return false, utils.Position2D{}
 }

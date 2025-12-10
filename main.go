@@ -7,6 +7,7 @@ import (
 	"github.com/AgrafeModel/advent_of_code/puzzles/y2023"
 	"github.com/AgrafeModel/advent_of_code/puzzles/y2024"
 	"github.com/AgrafeModel/advent_of_code/puzzles/y2025"
+	"github.com/AgrafeModel/advent_of_code/utils"
 )
 
 var y2025Funcs = []func() int{
@@ -26,6 +27,8 @@ var y2025Funcs = []func() int{
 	y2025.Day7Part2,
 	y2025.Day8Part1,
 	y2025.Day8Part2,
+	y2025.Day9Part1,
+	y2025.Day9Part2,
 }
 
 var y2024Funcs = []func() int{
@@ -64,10 +67,13 @@ var (
 	chosen_year = flag.Int("y", 0, "The year to run")
 	chosen_day  = flag.Int("d", 0, "The day to run. You also have to chose a year")
 	chosen_part = flag.Int("p", 0, "The part to run. You also have to chose a year and a day")
+	DEBUG       = flag.Bool("debug", false, "Enable debug mode")
 )
 
 func main() {
 	flag.Parse()
+
+	utils.SetDebugMode(DEBUG)
 
 	if *chosen_year == 0 {
 		allYear2023()

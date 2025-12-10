@@ -5,6 +5,16 @@ import (
 	"os"
 )
 
+var DEBUG *bool
+
+func IsDebugMode() bool {
+	return DEBUG != nil && *DEBUG
+}
+
+func SetDebugMode(debug *bool) {
+	DEBUG = debug
+}
+
 func Puzzle(str string) {
 	fmt.Println("\033[32m [PUZZLE] " + str + "\033[0m")
 }

@@ -8,11 +8,11 @@ import (
 
 type lavamap struct {
 	grid     [][]int
-	startpos []utils.Position
+	startpos []utils.Position2D
 }
 
 // return the number of paths possibles to reach 9 with step = 1
-func (lv *lavamap) LookForTrail(from utils.Position, elevation int, walked *map[utils.Position]bool) int {
+func (lv *lavamap) LookForTrail(from utils.Position2D, elevation int, walked *map[utils.Position2D]bool) int {
 	if lv.grid[from.Y][from.X] != elevation || (walked != nil && (*walked)[from]) {
 		return 0
 	}
@@ -47,7 +47,7 @@ func Day10Part1() int {
 		for xid, x := range line {
 			v := utils.ParseInt(x)
 			if v == 0 {
-				g.startpos = append(g.startpos, utils.Position{
+				g.startpos = append(g.startpos, utils.Position2D{
 					X: xid,
 					Y: y,
 				})
@@ -60,7 +60,7 @@ func Day10Part1() int {
 
 	for _, p := range g.startpos {
 		fmt.Println(p)
-		mp := make(map[utils.Position]bool)
+		mp := make(map[utils.Position2D]bool)
 		res += g.LookForTrail(p, 0, &mp)
 	}
 
@@ -76,7 +76,7 @@ func Day10Part2() int {
 		for xid, x := range line {
 			v := utils.ParseInt(x)
 			if v == 0 {
-				g.startpos = append(g.startpos, utils.Position{
+				g.startpos = append(g.startpos, utils.Position2D{
 					X: xid,
 					Y: y,
 				})

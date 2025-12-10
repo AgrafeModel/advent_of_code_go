@@ -10,7 +10,7 @@ type xmasGrid struct {
 
 const XMAS = "XMAS"
 
-func isXmasInDirection(grid xmasGrid, pos, dir utils.Position) bool {
+func isXmasInDirection(grid xmasGrid, pos, dir utils.Position2D) bool {
 	ptr := 0
 	for ptr < len(XMAS) {
 		dr := dir.
@@ -31,7 +31,7 @@ func isXmasInDirection(grid xmasGrid, pos, dir utils.Position) bool {
 	return true
 }
 
-func isX_mas(grid xmasGrid, pos utils.Position) bool {
+func isX_mas(grid xmasGrid, pos utils.Position2D) bool {
 	if grid.grid[pos.Y][pos.X] != 'A' {
 		return false
 	}
@@ -74,14 +74,14 @@ func isX_mas(grid xmasGrid, pos utils.Position) bool {
 func Day4Part1() int {
 	var grid xmasGrid
 
-	var xpos []utils.Position
+	var xpos []utils.Position2D
 
 	res := 0
 	y := 0
 	utils.ReadFilePerLines(utils.GetInputPath(2024, 4), func(line string) {
 		for x, v := range line {
 			if v == 'X' {
-				xpos = append(xpos, utils.Position{X: x, Y: y})
+				xpos = append(xpos, utils.Position2D{X: x, Y: y})
 			}
 		}
 		grid.grid = append(grid.grid, line)
@@ -101,14 +101,14 @@ func Day4Part1() int {
 func Day4Part2() int {
 	var grid xmasGrid
 
-	var apos []utils.Position
+	var apos []utils.Position2D
 
 	res := 0
 	y := 0
 	utils.ReadFilePerLines(utils.GetInputPath(2024, 4), func(line string) {
 		for x, v := range line {
 			if v == 'A' {
-				apos = append(apos, utils.Position{X: x, Y: y})
+				apos = append(apos, utils.Position2D{X: x, Y: y})
 			}
 		}
 		grid.grid = append(grid.grid, line)
