@@ -9,7 +9,8 @@ import (
 )
 
 // Intuition on part 1 : Brutforce all combinaisons
-// Intuition on part 2 : Solve an equation
+// Intuition on part 2 : Solve an equation A*x = b using Gaussian elimination
+// Fuck part 2
 
 type joltageMachine struct {
 	targetLights []int
@@ -269,6 +270,43 @@ func Day10Part2() int {
 
 	res := 0
 
-	fmt.Println("We can solve this one using linear algebra but AAAAAAAAAAAAAAAAAAAAAAAAA f it")
+	// We can solve this using matrix algebra.
+	// using this form : A * x = b
+	// A = matrix of buttons (rows = lights, columns = buttons) (1 if button lights the light, 0 otherwise)
+	// x = vector of button presses (xi = number of times button i is pressed)
+	// b = vector of target light counts (bi = number of times light i should be lit)
+	// to solve it, we can use Gaussian elimination.
+	// ex:
+	// A = | 1 0 1 |   b = | 2 |
+	//     | 1 1 0 |       | 1 |
+	//     | 0 1 1 |       | 1 |
+	//
+	// after diagonalization :
+	// A = | 1 0 0 |   b = | 1 |
+	//     | 0 1 0 |       | 0 |
+	//     | 0 0 1 |       | 1 |
+	//
+	// so the solution is : we press button 1 once, button 2 zero times, button 3 once.
+	machines := readDay10Input()
+	for _, m := range machines {
+		A := utils.NewMatrix(len(m.targetLights), len(m.buttons))
+		for j, button := range m.buttons {
+			for _, lightIndex := range button {
+				if lightIndex >= 0 && lightIndex < len(m.targetLights) {
+					A.Set(lightIndex, j, 1)
+				}
+			}
+		}
+
+		b := make([]float64, len(m.targetLights))
+		for i, count := range m.counter {
+			b[i] = float64(count)
+		}
+
+		fmt.Println("machine: ", m.buttons, " counter: ", m.counter)
+		x := utils.GausianEliminationSolve(A, b)
+		fmt.Println("solution x: ", x)
+
+	}
 	return res
 }
