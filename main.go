@@ -29,6 +29,10 @@ var y2025Funcs = []func() int{
 	y2025.Day8Part2,
 	y2025.Day9Part1,
 	y2025.Day9Part2,
+	y2025.Day10Part1,
+	y2025.Day10Part2,
+	y2025.Day11Part1,
+	y2025.Day11Part2,
 }
 
 var y2024Funcs = []func() int{
